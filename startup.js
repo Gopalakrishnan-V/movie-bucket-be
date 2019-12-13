@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 
 //Environment variables set
-dotenv.config({ path: path.resolve(__dirname, "./.env") });
+if (process.env.NODE_ENV === "development") {
+  dotenv.config({ path: path.resolve(__dirname, "./.env") });
+}
 
 //Mongoose initilization
 if (!process.env.MONGO_URI) {
