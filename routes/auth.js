@@ -4,7 +4,7 @@ const {
   validateRegistration,
   validateActivation,
   validateEmailAuthentication
-} = require("../middlewares/auth");
+} = require("../middlewares/authValidator");
 const authController = require("../controllers/auth");
 const authRouter = express.Router();
 

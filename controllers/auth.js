@@ -15,8 +15,7 @@ module.exports.register = async (req, res) => {
     if (existingUser && existingUser.password) {
       // User already registered using email and password
       return res.status(400).send({
-        error: 400,
-        message: '"user" with given email already exists'
+        error: { code: 400, message: '"user" with given email already exists' }
       });
     } else {
       // User already registered via Facebook or Google (or)
@@ -72,9 +71,9 @@ module.exports.activate = async (req, res) => {
           data: {
             _id: existingUser.id,
             name: existingUser.name,
-            accessToken: getToken(existingUser),
-            message: "merged with existing account successfully"
-          }
+            accessToken: getToken(existingUser)
+          },
+          message: "merged with existing account successfully"
         });
       } else {
         // Create new user
@@ -89,9 +88,9 @@ module.exports.activate = async (req, res) => {
           data: {
             _id: newUser.id,
             name: newUser.name,
-            accessToken: getToken(newUser),
-            message: "new account created successfully"
-          }
+            accessToken: getToken(newUser)
+          },
+          message: "new account created successfully"
         });
       }
     }
@@ -117,9 +116,9 @@ module.exports.loginWithEmail = async (req, res) => {
           data: {
             _id: user.id,
             name: user.name,
-            accessToken: getToken(user),
-            message: "loggedin successfully"
-          }
+            accessToken: getToken(user)
+          },
+          message: "loggedin successfully"
         });
       } else {
         // Password mismatch

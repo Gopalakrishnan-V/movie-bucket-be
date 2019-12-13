@@ -6,5 +6,5 @@ const app = express();
 configureApp(app);
 app.use("/api/v1", require("./routes"));
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT);
