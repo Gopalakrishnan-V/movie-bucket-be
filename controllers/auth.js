@@ -39,6 +39,7 @@ module.exports.register = async (req, res) => {
       return res.send({ message: `verification code sent to ${email}` });
     }
   } catch (err) {
+    console.log("__err", err);
     return res.status(500).send(getInternalServerError());
   }
 };
