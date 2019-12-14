@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 
 //Environment variables set
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV == null) {
   dotenv.config({ path: path.resolve(__dirname, "./.env") });
 }
 
@@ -27,10 +27,15 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "Gmail",
   auth: {
+    type: "OAuth2",
     user: process.env.EMAIL_ID,
-    pass: process.env.EMAIL_PASSWORD
+    clientId: process.env.EMAIL_CLIENT_ID,
+    clientSecret: process.env.EMAIL_CLIENT_SECRET,
+    refreshToken: process.env.EMAIL_REFRESH_TOKEN,
+    accessToken: process.env.EMAIL_ACCESS_TOKEN,
+    expires: process.env.EMAIL_EXPIRES
   }
 });
 
